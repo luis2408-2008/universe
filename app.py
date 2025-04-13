@@ -13,13 +13,22 @@ class Base(DeclarativeBase):
 db = SQLAlchemy(model_class=Base)
 # Create the app
 app = Flask(__name__)
-app.secret_key = "clave_secreta_para_tu_aplicacion"
+# Usar variable de entorno para clave secreta en producción, o valor predeterminado localmente
+app.secret_key = os.environ.get("SECRET_KEY", "clave_secreta_para_tu_aplicacion")
 
-# Configure the database to use SQLite en una ubicación permanente
-db_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'instance', 'cosmic_explorer.db')
-# Asegurarnos de que el directorio existe
-os.makedirs(os.path.dirname(db_path), exist_ok=True)
-app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
+# Configurar la base de datos (SQLite localmente, PostgreSQL en producción)
+if 'DATABASE_URL' in os.environ:
+    # Configuración para Render (PostgreSQL)
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL").replace("postgres://", "postgresql://")
+    print("Usando PostgreSQL (Producción)")
+else:
+    # Configuración local (SQLite)
+    db_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'instance', 'cosmic_explorer.db')
+    # Asegurarnos de que el directorio existe
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
+    print("Usando SQLite (Desarrollo local)")
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Initialize the app with the extension
