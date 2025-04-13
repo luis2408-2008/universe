@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block title %}Panel de Administración - El Origen del Universo{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <!-- Header section -->
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-white text-glow mb-4">Panel de Administración</h1>
+        <p class="text-xl text-purple-200 max-w-3xl mx-auto">
+            Administra usuarios, supervisa la actividad y controla el contenido de la plataforma.
+        </p>
+    </div>
+    
+    <!-- Dashboard stats -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="content-card p-6 text-center">
+            <i class="fas fa-users text-5xl text-purple-400 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-purple-300">Usuarios Registrados</h3>
+            <p class="text-3xl font-bold text-white mb-2">{{ total_usuarios }}</p>
+        </div>
+        
+        <div class="content-card p-6 text-center">
+            <i class="fas fa-file-alt text-5xl text-purple-400 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-purple-300">Contenidos Totales</h3>
+            <p class="text-3xl font-bold text-white mb-2">{{ total_contenidos }}</p>
+        </div>
+        
+        <div class="content-card p-6 text-center">
+            <i class="fas fa-images text-5xl text-purple-400 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-purple-300">Recursos Multimedia</h3>
+            <p class="text-3xl font-bold text-white mb-2">{{ total_videos + total_imagenes }}</p>
+        </div>
+    </div>
+    
+    <!-- Recent activity section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <!-- Recent users -->
+        <div class="content-card p-6">
+            <h3 class="text-xl font-bold mb-4 text-purple-300">
+                <i class="fas fa-user-plus mr-2"></i> Usuarios Recientes
+            </h3>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-gray-900 bg-opacity-50 rounded-lg overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Usuario</th>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Email</th>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Registro</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-800">
+                        {% for usuario in usuarios_recientes %}
+                        <tr class="hover:bg-gray-800 hover:bg-opacity-40 transition-colors">
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-white">{{ usuario.username }}</td>
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-300">{{ usuario.email }}</td>
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-400">{{ usuario.fecha_registro.strftime('%d-%m-%Y %H:%M') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Last logins -->
+        <div class="content-card p-6">
+            <h3 class="text-xl font-bold mb-4 text-purple-300">
+                <i class="fas fa-sign-in-alt mr-2"></i> Últimos Accesos
+            </h3>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-gray-900 bg-opacity-50 rounded-lg overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Usuario</th>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Email</th>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Último Acceso</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-800">
+                        {% for usuario in ultimos_accesos %}
+                        <tr class="hover:bg-gray-800 hover:bg-opacity-40 transition-colors">
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-white">{{ usuario.username }}</td>
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-300">{{ usuario.email }}</td>
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-400">{{ usuario.ultimo_acceso.strftime('%d-%m-%Y %H:%M') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <!-- All users section -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold text-purple-300 mb-6 section-header">
+            <i class="fas fa-users mr-2"></i> Todos los Usuarios
+        </h2>
+        
+        <div class="content-card p-6">
+            <div class="mb-4 flex justify-between items-center">
+                <div>
+                    <input type="text" id="userSearch" placeholder="Buscar usuario..." class="px-4 py-2 rounded-lg bg-gray-800 text-white border border-purple-800 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table id="usersTable" class="min-w-full bg-gray-900 bg-opacity-50 rounded-lg overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">ID</th>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Usuario</th>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Email</th>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Fecha de Registro</th>
+                            <th class="py-3 px-4 bg-gray-800 bg-opacity-70 text-left text-xs font-medium text-purple-300 uppercase tracking-wider">Último Acceso</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-800">
+                        {% for usuario in usuarios %}
+                        <tr class="hover:bg-gray-800 hover:bg-opacity-40 transition-colors">
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-white">{{ usuario.id }}</td>
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-white">
+                                {{ usuario.username }}
+                                {% if usuario.username == 'admin' %}
+                                <span class="ml-2 px-2 py-1 text-xs bg-green-800 text-white rounded-full">Admin</span>
+                                {% endif %}
+                            </td>
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-300">{{ usuario.email }}</td>
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-400">{{ usuario.fecha_registro.strftime('%d-%m-%Y %H:%M') }}</td>
+                            <td class="py-3 px-4 whitespace-nowrap text-sm text-gray-400">{{ usuario.ultimo_acceso.strftime('%d-%m-%Y %H:%M') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Búsqueda de usuarios en tiempo real
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('userSearch');
+        const tableRows = document.querySelectorAll('#usersTable tbody tr');
+        
+        searchInput.addEventListener('keyup', function() {
+            const searchValue = this.value.toLowerCase();
+            
+            tableRows.forEach(function(row) {
+                const username = row.querySelectorAll('td')[1].textContent.toLowerCase();
+                const email = row.querySelectorAll('td')[2].textContent.toLowerCase();
+                
+                if (username.includes(searchValue) || email.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

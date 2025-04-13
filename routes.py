@@ -135,6 +135,37 @@ def gallery():
     return render_template('gallery.html', imagenes=imagenes)
 
 
+@app.route('/admin')
+@login_required
+def admin():
+    # Verificar si el usuario actual es el administrador
+    if current_user.username != 'admin':
+        flash('No tienes permiso para acceder al panel de administración', 'error')
+        return redirect(url_for('dashboard'))
+    
+    # Obtener todos los usuarios ordenados por fecha de registro (más reciente primero)
+    usuarios = Usuario.query.order_by(desc(Usuario.fecha_registro)).all()
+    
+    # Obtener estadísticas
+    total_usuarios = Usuario.query.count()
+    usuarios_recientes = Usuario.query.order_by(desc(Usuario.fecha_registro)).limit(5).all()
+    ultimos_accesos = Usuario.query.order_by(desc(Usuario.ultimo_acceso)).limit(5).all()
+    
+    # Obtener conteo de contenido
+    total_contenidos = ContenidoCosmico.query.count()
+    total_videos = VideoCosmico.query.count()
+    total_imagenes = ImagenCosmica.query.count()
+    
+    return render_template('admin.html', 
+                          usuarios=usuarios,
+                          total_usuarios=total_usuarios,
+                          usuarios_recientes=usuarios_recientes,
+                          ultimos_accesos=ultimos_accesos,
+                          total_contenidos=total_contenidos,
+                          total_videos=total_videos,
+                          total_imagenes=total_imagenes)
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
