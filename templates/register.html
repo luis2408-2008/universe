@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrarse - El Origen del Universo{% endblock %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-[80vh]">
+    <div class="w-full max-w-md">
+        <div class="content-card p-8 cosmic-border">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl font-bold text-purple-300 text-glow">Crear Cuenta</h2>
+                <p class="text-gray-300 mt-2">Únete para explorar los misterios del universo</p>
+            </div>
+            
+            <form method="POST" action="{{ url_for('register') }}" class="space-y-6">
+                {{ form.hidden_tag() }}
+                
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-300">Usuario</label>
+                    <div class="mt-1">
+                        {{ form.username(class="form-input w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50") }}
+                    </div>
+                    {% for error in form.username.errors %}
+                        <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300">Correo Electrónico</label>
+                    <div class="mt-1">
+                        {{ form.email(class="form-input w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50") }}
+                    </div>
+                    {% for error in form.email.errors %}
+                        <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-300">Contraseña</label>
+                    <div class="mt-1">
+                        {{ form.password(class="form-input w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50") }}
+                    </div>
+                    {% for error in form.password.errors %}
+                        <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                
+                <div>
+                    <label for="confirm_password" class="block text-sm font-medium text-gray-300">Confirmar Contraseña</label>
+                    <div class="mt-1">
+                        {{ form.confirm_password(class="form-input w-full px-4 py-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-purple-500 focus:ring focus:ring-purple-500 focus:ring-opacity-50") }}
+                    </div>
+                    {% for error in form.confirm_password.errors %}
+                        <p class="text-red-500 text-xs mt-1">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                
+                <div>
+                    {{ form.submit(class="cosmic-button w-full") }}
+                </div>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-400">
+                    ¿Ya tienes cuenta? <a href="{{ url_for('login') }}" class="text-purple-400 hover:text-purple-300">Inicia sesión</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add floating animation to form
+    const form = document.querySelector('form');
+    form.classList.add('animate-float');
+    
+    // Focus the username field
+    document.getElementById('username').focus();
+    
+    // Add subtle background effects to form inputs
+    const formInputs = document.querySelectorAll('.form-input');
+    
+    formInputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.classList.add('cosmic-border');
+        });
+        
+        input.addEventListener('blur', function() {
+            this.classList.remove('cosmic-border');
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}El Origen del Universo - Inicio{% endblock %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-[80vh] text-center">
+    <div class="animate-float">
+        <img src="{{ url_for('static', filename='svg/cosmos.svg') }}" alt="Cosmos Logo" class="w-64 h-64 mb-6">
+    </div>
+    
+    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white text-glow animate-pulse-slow">
+        El Origen del Universo
+    </h1>
+    
+    <p class="text-xl md:text-2xl mb-8 text-purple-200 max-w-2xl">
+        Una exploración inmersiva de las teorías, filosofías y misterios detrás de la creación del cosmos.
+    </p>
+    
+    <div class="space-y-4 md:space-y-0 md:space-x-4 md:flex">
+        <a href="{{ url_for('login') }}" class="cosmic-button inline-block">
+            Iniciar Sesión
+        </a>
+        <a href="{{ url_for('register') }}" class="cosmic-button inline-block bg-opacity-70">
+            Registrarse
+        </a>
+    </div>
+    
+    <div class="mt-16 max-w-4xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Big Bang Feature -->
+            <div class="content-card p-6 text-center">
+                <div class="h-16 flex items-center justify-center mb-4">
+                    <i class="fas fa-atom text-4xl text-purple-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-purple-300">El Big Bang</h3>
+                <p class="text-gray-300">Descubre la teoría que explica el nacimiento de nuestro universo hace 13.8 mil millones de años.</p>
+            </div>
+            
+            <!-- Cosmic Theories Feature -->
+            <div class="content-card p-6 text-center">
+                <div class="h-16 flex items-center justify-center mb-4">
+                    <i class="fas fa-brain text-4xl text-purple-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-purple-300">Teorías Cósmicas</h3>
+                <p class="text-gray-300">Explora las diversas teorías científicas sobre la estructura y evolución del universo.</p>
+            </div>
+            
+            <!-- Space-Time Feature -->
+            <div class="content-card p-6 text-center">
+                <div class="h-16 flex items-center justify-center mb-4">
+                    <i class="fas fa-clock text-4xl text-purple-400"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-2 text-purple-300">Espacio-Tiempo</h3>
+                <p class="text-gray-300">Sumérgete en los conceptos de espacio, tiempo y gravedad según la física moderna.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}El Origen del Universo{% endblock %}</title>
+    
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    {% block styles %}{% endblock %}
+</head>
+<body class="bg-cosmos text-white min-h-screen flex flex-col">
+    <!-- Cosmic animated background -->
+    <div class="cosmic-background">
+        <div class="stars"></div>
+    </div>
+    
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <!-- Navigation -->
+    <nav class="z-10 bg-gray-900 bg-opacity-70 backdrop-filter backdrop-blur-sm border-b border-purple-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo and site name -->
+                <div class="flex items-center">
+                    <a href="{{ url_for('index') }}" class="flex items-center">
+                        <img class="h-10 w-10" src="{{ url_for('static', filename='svg/cosmos.svg') }}" alt="Logo">
+                        <span class="ml-2 text-xl font-bold text-purple-300 text-glow">Explorador Cósmico</span>
+                    </a>
+                </div>
+                
+                <!-- Navigation links -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('dashboard') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-800 hover:bg-opacity-50 transition-colors">Inicio</a>
+                            <a href="{{ url_for('big_bang') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-800 hover:bg-opacity-50 transition-colors">El Big Bang</a>
+                            <a href="{{ url_for('theories') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-800 hover:bg-opacity-50 transition-colors">Teorías</a>
+                            <a href="{{ url_for('philosophy') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-800 hover:bg-opacity-50 transition-colors">Filosofía</a>
+                            <a href="{{ url_for('space_time') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-800 hover:bg-opacity-50 transition-colors">Espacio-Tiempo</a>
+                            <a href="{{ url_for('gallery') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-800 hover:bg-opacity-50 transition-colors">Galería</a>
+                            <a href="{{ url_for('logout') }}" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-white bg-red-800 bg-opacity-60 hover:bg-red-700 transition-colors">Cerrar Sesión</a>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-purple-800 hover:bg-opacity-50 transition-colors">Iniciar Sesión</a>
+                            <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-purple-800 bg-opacity-60 hover:bg-purple-700 transition-colors">Registrarse</a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" id="mobile-menu-button" class="text-gray-200 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-90 backdrop-filter backdrop-blur-sm">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-purple-800 hover:bg-opacity-50">Inicio</a>
+                    <a href="{{ url_for('big_bang') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-purple-800 hover:bg-opacity-50">El Big Bang</a>
+                    <a href="{{ url_for('theories') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-purple-800 hover:bg-opacity-50">Teorías</a>
+                    <a href="{{ url_for('philosophy') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-purple-800 hover:bg-opacity-50">Filosofía</a>
+                    <a href="{{ url_for('space_time') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-purple-800 hover:bg-opacity-50">Espacio-Tiempo</a>
+                    <a href="{{ url_for('gallery') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-purple-800 hover:bg-opacity-50">Galería</a>
+                    <a href="{{ url_for('logout') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-red-800 bg-opacity-60 hover:bg-red-700">Cerrar Sesión</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-purple-800 hover:bg-opacity-50">Iniciar Sesión</a>
+                    <a href="{{ url_for('register') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-purple-800 bg-opacity-60 hover:bg-purple-700">Registrarse</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main content -->
+    <main class="flex-grow container mx-auto px-4 py-8 z-10">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="z-10 bg-gray-900 bg-opacity-70 backdrop-filter backdrop-blur-sm border-t border-purple-900">
+        <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm text-gray-300">&copy; 2023 Explorador Cósmico</p>
+                    <p class="text-xs text-gray-400 mt-1">Una experiencia inmersiva del origen del universo</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Error del Servidor - El Origen del Universo{% endblock %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center min-h-[70vh] text-center">
+    <div class="animate-float mb-8">
+        <i class="fas fa-satellite-dish text-red-400 text-8xl"></i>
+    </div>
+    
+    <h1 class="text-5xl font-bold mb-4 text-white text-glow">
+        500
+    </h1>
+    
+    <h2 class="text-3xl font-bold mb-6 text-purple-300">
+        Error del Servidor
+    </h2>
+    
+    <p class="text-xl mb-8 text-purple-200 max-w-2xl">
+        Hubo un problema en nuestra nave espacial. Nuestros ingenieros cósmicos están trabajando para arreglarlo.
+        Por favor, intenta de nuevo en unos momentos.
+    </p>
+    
+    <a href="{{ url_for('index') }}" class="cosmic-button inline-flex items-center">
+        <i class="fas fa-home mr-2"></i> Volver al Inicio
+    </a>
+</div>
+{% endblock %}

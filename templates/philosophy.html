@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+
+{% block title %}Filosofía Cósmica - El Origen del Universo{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <!-- Header section -->
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-white text-glow mb-4">Filosofía Cósmica</h1>
+        <p class="text-xl text-purple-200 max-w-3xl mx-auto">
+            Las visiones filosóficas antiguas y modernas sobre la naturaleza y el origen del universo.
+        </p>
+    </div>
+    
+    <!-- Main content -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left column: Content -->
+        <div class="lg:col-span-2">
+            {% for contenido in contenidos %}
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-300 mb-4">{{ contenido.titulo }}</h2>
+                
+                <div class="text-gray-300 space-y-4">
+                    {% for parrafo in contenido.contenido.split('\n\n') %}
+                        {% if parrafo.strip() %}
+                            <p>{{ parrafo }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+            
+            <!-- Ancient cosmologies section -->
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-300 mb-6">Cosmologías Antiguas</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Greek cosmology -->
+                    <div class="p-4 bg-blue-900 bg-opacity-30 rounded-lg border border-blue-800">
+                        <h3 class="text-xl font-bold text-blue-300 mb-3">Cosmología Griega</h3>
+                        <p class="text-gray-300 mb-3">
+                            Los antiguos griegos desarrollaron varias visiones sobre el cosmos. Aristóteles veía el universo 
+                            como una serie de esferas concéntricas, con la Tierra inmóvil en el centro. Los pitagóricos 
+                            creían en un "fuego central" alrededor del cual orbitaban todos los cuerpos celestes.
+                        </p>
+                        <p class="text-gray-300">
+                            Otros filósofos, como Demócrito, propusieron una visión atomista del universo, donde todo 
+                            estaba compuesto de pequeñas partículas indivisibles moviéndose en el vacío.
+                        </p>
+                    </div>
+                    
+                    <!-- Eastern cosmology -->
+                    <div class="p-4 bg-red-900 bg-opacity-30 rounded-lg border border-red-800">
+                        <h3 class="text-xl font-bold text-red-300 mb-3">Cosmología Oriental</h3>
+                        <p class="text-gray-300 mb-3">
+                            Las tradiciones hindúes describen ciclos cósmicos llamados "kalpas", donde el universo 
+                            se crea y destruye repetidamente. Cada kalpa dura millones de años, representando un día 
+                            en la vida de Brahma.
+                        </p>
+                        <p class="text-gray-300">
+                            En la cosmología budista, el universo no tiene principio ni fin, sino que pasa por 
+                            ciclos continuos de expansión y contracción, reflejando la naturaleza impermanente de todas las cosas.
+                        </p>
+                    </div>
+                    
+                    <!-- Egyptian cosmology -->
+                    <div class="p-4 bg-yellow-900 bg-opacity-30 rounded-lg border border-yellow-800">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-3">Cosmología Egipcia</h3>
+                        <p class="text-gray-300">
+                            Los antiguos egipcios veían el cosmos como un gran río celestial (el Nilo celeste) que fluía 
+                            a través del cielo. La diosa Nut formaba la bóveda celeste, y su cuerpo arqueado sobre la tierra 
+                            estaba decorado con estrellas. El dios Geb representaba la tierra, y Ra, el sol, navegaba 
+                            diariamente a través del cielo en su barca solar.
+                        </p>
+                    </div>
+                    
+                    <!-- Mesoamerican cosmology -->
+                    <div class="p-4 bg-green-900 bg-opacity-30 rounded-lg border border-green-800">
+                        <h3 class="text-xl font-bold text-green-300 mb-3">Cosmología Mesoamericana</h3>
+                        <p class="text-gray-300">
+                            Las civilizaciones mesoamericanas como los mayas conceptualizaban el cosmos en múltiples capas. 
+                            El universo consistía en tres dominios principales: el cielo (con 13 niveles), la tierra y el 
+                            inframundo (con 9 niveles). El árbol cósmico o "Ceiba" conectaba estos tres reinos, y el universo 
+                            pasaba por ciclos de creación y destrucción.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modern philosophical perspectives -->
+            <div class="content-card p-6">
+                <h2 class="text-2xl font-bold text-purple-300 mb-6">Perspectivas Filosóficas Modernas</h2>
+                
+                <div class="space-y-6">
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h3 class="text-xl font-bold text-purple-300 mb-3">El Imperativo Antrópico</h3>
+                        <p class="text-gray-300">
+                            El principio antrópico sugiere que las observaciones del universo deben ser compatibles con la 
+                            existencia consciente del observador. En otras palabras, observamos el universo con las 
+                            propiedades que tiene precisamente porque, si fueran diferentes, no estaríamos aquí para observarlo.
+                        </p>
+                    </div>
+                    
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h3 class="text-xl font-bold text-purple-300 mb-3">La Hipótesis de la Simulación</h3>
+                        <p class="text-gray-300">
+                            Propuesta por el filósofo Nick Bostrom, esta hipótesis sugiere que nuestra realidad podría ser 
+                            una simulación computacional creada por una civilización avanzada. Si las civilizaciones tecnológicas 
+                            llegan a un punto donde pueden crear simulaciones indistinguibles de la realidad, estadísticamente 
+                            es más probable que vivamos en una simulación que en la "realidad base".
+                        </p>
+                    </div>
+                    
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h3 class="text-xl font-bold text-purple-300 mb-3">Contingencia vs. Necesidad</h3>
+                        <p class="text-gray-300">
+                            ¿Las leyes físicas del universo son necesarias o contingentes? Algunos filósofos argumentan que las 
+                            leyes de la naturaleza podrían haber sido diferentes (contingencia), mientras que otros sostienen 
+                            que tienen que ser como son por necesidad lógica o matemática.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right column: Videos and images -->
+        <div>
+            <!-- Videos section -->
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Videos Explicativos</h2>
+                
+                {% for video in videos %}
+                <div class="mb-6">
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-lg font-bold text-purple-200 mb-1">{{ video.titulo }}</h3>
+                    <p class="text-sm text-gray-300">{{ video.descripcion }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Images section -->
+            <div class="content-card p-6">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Imágenes Históricas</h2>
+                
+                <div class="space-y-6">
+                    {% for imagen in imagenes %}
+                    <div class="gallery-item">
+                        <img src="{{ imagen.url }}" alt="{{ imagen.titulo }}" class="w-full h-56 object-cover rounded-lg">
+                        <div class="mt-2">
+                            <h3 class="text-lg font-bold text-purple-200 gallery-title">{{ imagen.titulo }}</h3>
+                            <p class="text-sm text-gray-300 gallery-desc">{{ imagen.descripcion }}</p>
+                            <p class="text-xs text-gray-400 mt-1 gallery-source">Fuente: {{ imagen.fuente }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Philosophers list -->
+            <div class="content-card p-6 mt-8">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Filósofos Influyentes</h2>
+                
+                <ul class="space-y-3">
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Platón</span>
+                            <span class="text-sm text-gray-300"> - Teoría del Demiurgo y las Formas</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Aristóteles</span>
+                            <span class="text-sm text-gray-300"> - Universo geocéntrico</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Immanuel Kant</span>
+                            <span class="text-sm text-gray-300"> - Teoría nebular del sistema solar</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Giordano Bruno</span>
+                            <span class="text-sm text-gray-300"> - Universo infinito con múltiples mundos</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Albert Einstein</span>
+                            <span class="text-sm text-gray-300"> - Relatividad y modelo estático del universo</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Stephen Hawking</span>
+                            <span class="text-sm text-gray-300"> - Tiempo imaginario y ausencia de fronteras</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock %}

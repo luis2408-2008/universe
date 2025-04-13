@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+{% block title %}Espacio-Tiempo - El Origen del Universo{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <!-- Header section -->
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-white text-glow mb-4">Espacio-Tiempo</h1>
+        <p class="text-xl text-purple-200 max-w-3xl mx-auto">
+            Explorando los conceptos más fascinantes sobre la relatividad, agujeros negros y la estructura del espacio-tiempo.
+        </p>
+    </div>
+    
+    <!-- Main content -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left column: Content -->
+        <div class="lg:col-span-2">
+            {% for contenido in contenidos %}
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-300 mb-4">{{ contenido.titulo }}</h2>
+                
+                <div class="text-gray-300 space-y-4">
+                    {% for parrafo in contenido.contenido.split('\n\n') %}
+                        {% if parrafo.strip() %}
+                            <p>{{ parrafo }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+            
+            <!-- Relativity explained -->
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-300 mb-6">Relatividad Explicada</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Special relativity -->
+                    <div class="p-4 bg-blue-900 bg-opacity-30 rounded-lg border border-blue-800">
+                        <h3 class="text-xl font-bold text-blue-300 mb-3">Relatividad Especial</h3>
+                        <p class="text-gray-300 mb-3">
+                            Publicada por Einstein en 1905, establece que:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>La velocidad de la luz es constante para todos los observadores</li>
+                            <li>Las leyes de la física son las mismas en todos los marcos de referencia inerciales</li>
+                            <li>El tiempo se dilata y el espacio se contrae a velocidades cercanas a la luz</li>
+                            <li>La masa y la energía son equivalentes (E=mc²)</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- General relativity -->
+                    <div class="p-4 bg-purple-900 bg-opacity-30 rounded-lg border border-purple-800">
+                        <h3 class="text-xl font-bold text-purple-300 mb-3">Relatividad General</h3>
+                        <p class="text-gray-300 mb-3">
+                            Publicada por Einstein en 1915, establece que:
+                        </p>
+                        <ul class="list-disc list-inside text-gray-300 space-y-2">
+                            <li>La gravedad no es una fuerza, sino una curvatura del espacio-tiempo</li>
+                            <li>La materia y la energía curvan el espacio-tiempo a su alrededor</li>
+                            <li>Los objetos siguen trayectorias geodésicas a través del espacio-tiempo curvado</li>
+                            <li>Predice ondas gravitacionales, lentes gravitacionales y agujeros negros</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Black holes -->
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-300 mb-6">Agujeros Negros</h2>
+                
+                <div class="text-gray-300 space-y-4 mb-6">
+                    <p>
+                        Los agujeros negros son regiones del espacio-tiempo donde la gravedad es tan intensa que nada, 
+                        ni siquiera la luz, puede escapar una vez que cruza su horizonte de eventos. Se forman cuando 
+                        estrellas masivas colapsan bajo su propia gravedad al final de su vida.
+                    </p>
+                    <p>
+                        El físico Stephen Hawking descubrió que los agujeros negros no son completamente "negros", 
+                        sino que emiten una radiación térmica sutil, conocida como radiación de Hawking.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h3 class="text-lg font-bold text-purple-300 mb-2">Tipos de Agujeros Negros</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Estelares (3-10 masas solares)</li>
+                            <li>Intermedios (100-10,000 masas solares)</li>
+                            <li>Supermasivos (millones-billones de masas solares)</li>
+                            <li>Primordiales (formados durante el Big Bang)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h3 class="text-lg font-bold text-purple-300 mb-2">Partes de un Agujero Negro</h3>
+                        <ul class="list-disc list-inside text-gray-300 space-y-1">
+                            <li>Singularidad (centro infinitamente denso)</li>
+                            <li>Horizonte de eventos (punto sin retorno)</li>
+                            <li>Ergosfera (región de distorsión espacio-temporal)</li>
+                            <li>Disco de acreción (materia orbitando)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Spacetime mysteries -->
+            <div class="content-card p-6">
+                <h2 class="text-2xl font-bold text-purple-300 mb-6">Misterios del Espacio-Tiempo</h2>
+                
+                <div class="space-y-6">
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h3 class="text-xl font-bold text-purple-300 mb-3">Agujeros de Gusano</h3>
+                        <p class="text-gray-300">
+                            Los agujeros de gusano son pasajes hipotéticos a través del espacio-tiempo que podrían crear atajos 
+                            entre puntos distantes del universo. Aunque son matemáticamente posibles según la relatividad general, 
+                            su existencia real y estabilidad son cuestionadas por los físicos.
+                        </p>
+                    </div>
+                    
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h3 class="text-xl font-bold text-purple-300 mb-3">Viajes en el Tiempo</h3>
+                        <p class="text-gray-300">
+                            La relatividad permite, en teoría, viajes hacia el futuro mediante la dilatación temporal. Sin embargo, 
+                            los viajes al pasado enfrentan numerosos obstáculos físicos y paradojas, como la paradoja del abuelo.
+                            Muchos físicos creen que existe un "principio de protección cronológica" que impide los viajes al pasado.
+                        </p>
+                    </div>
+                    
+                    <div class="p-4 bg-gray-800 rounded-lg">
+                        <h3 class="text-xl font-bold text-purple-300 mb-3">Energía y Materia Oscura</h3>
+                        <p class="text-gray-300">
+                            Aproximadamente el 95% del universo está compuesto de energía oscura (68%) y materia oscura (27%), 
+                            cuyas naturalezas son en gran parte desconocidas. La energía oscura está acelerando la expansión 
+                            del universo, mientras que la materia oscura afecta la estructura a gran escala del cosmos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right column: Videos and images -->
+        <div>
+            <!-- Videos section -->
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Videos Explicativos</h2>
+                
+                {% for video in videos %}
+                <div class="mb-6">
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-lg font-bold text-purple-200 mb-1">{{ video.titulo }}</h3>
+                    <p class="text-sm text-gray-300">{{ video.descripcion }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Images section -->
+            <div class="content-card p-6">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Imágenes Asombrosas</h2>
+                
+                <div class="space-y-6">
+                    {% for imagen in imagenes %}
+                    <div class="gallery-item">
+                        <img src="{{ imagen.url }}" alt="{{ imagen.titulo }}" class="w-full h-56 object-cover rounded-lg">
+                        <div class="mt-2">
+                            <h3 class="text-lg font-bold text-purple-200 gallery-title">{{ imagen.titulo }}</h3>
+                            <p class="text-sm text-gray-300 gallery-desc">{{ imagen.descripcion }}</p>
+                            <p class="text-xs text-gray-400 mt-1 gallery-source">Fuente: {{ imagen.fuente }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Famous scientists -->
+            <div class="content-card p-6 mt-8">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Científicos Pioneros</h2>
+                
+                <ul class="space-y-3">
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Albert Einstein</span>
+                            <span class="text-sm text-gray-300"> - Teoría de la Relatividad</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Stephen Hawking</span>
+                            <span class="text-sm text-gray-300"> - Radiación de Hawking</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Kip Thorne</span>
+                            <span class="text-sm text-gray-300"> - Agujeros de gusano</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Roger Penrose</span>
+                            <span class="text-sm text-gray-300"> - Singularidades espaciotemporales</span>
+                        </div>
+                    </li>
+                    <li class="flex items-center">
+                        <i class="fas fa-user-graduate text-purple-400 mr-3"></i>
+                        <div>
+                            <span class="font-bold text-white">Katie Bouman</span>
+                            <span class="text-sm text-gray-300"> - Primera imagen de un agujero negro</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock %}

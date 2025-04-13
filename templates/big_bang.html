@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block title %}El Big Bang - El Origen del Universo{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <!-- Header section -->
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-white text-glow mb-4">El Big Bang</h1>
+        <p class="text-xl text-purple-200 max-w-3xl mx-auto">
+            La teoría del Big Bang es la explicación cosmológica predominante sobre el origen del universo.
+        </p>
+    </div>
+    
+    <!-- Main content -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left column: Content -->
+        <div class="lg:col-span-2">
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-300 mb-4">¿Qué es el Big Bang?</h2>
+                
+                {% for contenido in contenidos %}
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-purple-200 mb-3">{{ contenido.titulo }}</h3>
+                    <div class="text-gray-300 space-y-4">
+                        {% for parrafo in contenido.contenido.split('\n\n') %}
+                            {% if parrafo.strip() %}
+                                <p>{{ parrafo }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                
+                <div class="mt-8 p-4 bg-purple-900 bg-opacity-30 rounded-lg border border-purple-800">
+                    <h4 class="text-lg font-bold text-purple-300 mb-2">¿Sabías que?</h4>
+                    <p class="text-gray-300">
+                        El término "Big Bang" fue acuñado irónicamente por el astrónomo Fred Hoyle, quien en realidad 
+                        era un defensor de la teoría del estado estacionario y no creía en esta explosión inicial.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="content-card p-6">
+                <h2 class="text-2xl font-bold text-purple-300 mb-4">Línea de Tiempo Cósmica</h2>
+                
+                <div class="relative border-l-2 border-purple-700 pl-6 pb-6 space-y-10">
+                    <!-- Timeline item 1 -->
+                    <div class="relative">
+                        <div class="absolute -left-9 top-1 w-4 h-4 bg-purple-600 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">0 segundos</h3>
+                        <p class="text-gray-300">
+                            El Big Bang. El universo comienza como un punto infinitamente caliente y denso.
+                        </p>
+                    </div>
+                    
+                    <!-- Timeline item 2 -->
+                    <div class="relative">
+                        <div class="absolute -left-9 top-1 w-4 h-4 bg-purple-600 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">10<sup>-43</sup> segundos</h3>
+                        <p class="text-gray-300">
+                            Época de Planck. Las cuatro fuerzas fundamentales están unificadas.
+                        </p>
+                    </div>
+                    
+                    <!-- Timeline item 3 -->
+                    <div class="relative">
+                        <div class="absolute -left-9 top-1 w-4 h-4 bg-purple-600 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">10<sup>-35</sup> segundos</h3>
+                        <p class="text-gray-300">
+                            Inflación cósmica. El universo se expande exponencialmente.
+                        </p>
+                    </div>
+                    
+                    <!-- Timeline item 4 -->
+                    <div class="relative">
+                        <div class="absolute -left-9 top-1 w-4 h-4 bg-purple-600 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">3 minutos</h3>
+                        <p class="text-gray-300">
+                            Nucleosíntesis primordial. Se forman los primeros núcleos atómicos.
+                        </p>
+                    </div>
+                    
+                    <!-- Timeline item 5 -->
+                    <div class="relative">
+                        <div class="absolute -left-9 top-1 w-4 h-4 bg-purple-600 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">380,000 años</h3>
+                        <p class="text-gray-300">
+                            Recombinación. El universo se vuelve transparente y se libera la radiación cósmica de fondo.
+                        </p>
+                    </div>
+                    
+                    <!-- Timeline item 6 -->
+                    <div class="relative">
+                        <div class="absolute -left-9 top-1 w-4 h-4 bg-purple-600 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">Millones de años</h3>
+                        <p class="text-gray-300">
+                            La era oscura. El universo está formado principalmente por hidrógeno y helio neutros.
+                        </p>
+                    </div>
+                    
+                    <!-- Timeline item 7 -->
+                    <div class="relative">
+                        <div class="absolute -left-9 top-1 w-4 h-4 bg-purple-600 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">Mil millones de años</h3>
+                        <p class="text-gray-300">
+                            Formación de las primeras estrellas y galaxias.
+                        </p>
+                    </div>
+                    
+                    <!-- Timeline item 8 -->
+                    <div class="relative">
+                        <div class="absolute -left-9 top-1 w-4 h-4 bg-purple-600 rounded-full"></div>
+                        <h3 class="text-xl font-bold text-purple-300 mb-2">13.8 mil millones de años</h3>
+                        <p class="text-gray-300">
+                            El presente. El universo continúa expandiéndose y acelerando su expansión.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right column: Videos and images -->
+        <div>
+            <!-- Videos section -->
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Videos Explicativos</h2>
+                
+                {% for video in videos %}
+                <div class="mb-6">
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-lg font-bold text-purple-200 mb-1">{{ video.titulo }}</h3>
+                    <p class="text-sm text-gray-300">{{ video.descripcion }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Images section -->
+            <div class="content-card p-6">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Imágenes</h2>
+                
+                <div class="space-y-6">
+                    {% for imagen in imagenes %}
+                    <div class="gallery-item">
+                        <img src="{{ imagen.url }}" alt="{{ imagen.titulo }}" class="w-full h-56 object-cover rounded-lg">
+                        <div class="mt-2">
+                            <h3 class="text-lg font-bold text-purple-200 gallery-title">{{ imagen.titulo }}</h3>
+                            <p class="text-sm text-gray-300 gallery-desc">{{ imagen.descripcion }}</p>
+                            <p class="text-xs text-gray-400 mt-1 gallery-source">Fuente: {{ imagen.fuente }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock %}

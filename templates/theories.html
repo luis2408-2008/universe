@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+
+{% block title %}Teorías Científicas - El Origen del Universo{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <!-- Header section -->
+    <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-white text-glow mb-4">Teorías Científicas</h1>
+        <p class="text-xl text-purple-200 max-w-3xl mx-auto">
+            Explorando las teorías más fascinantes que intentan explicar la estructura y origen del universo.
+        </p>
+    </div>
+    
+    <!-- Main content -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <!-- Left column: Content -->
+        <div class="lg:col-span-2">
+            {% for contenido in contenidos %}
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-300 mb-4">{{ contenido.titulo }}</h2>
+                
+                <div class="text-gray-300 space-y-4">
+                    {% for parrafo in contenido.contenido.split('\n\n') %}
+                        {% if parrafo.strip() %}
+                            <p>{{ parrafo }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                
+                {% if contenido.titulo == "Teoría de Cuerdas" %}
+                <div class="mt-6 p-4 bg-blue-900 bg-opacity-30 rounded-lg border border-blue-800">
+                    <h4 class="text-lg font-bold text-blue-300 mb-2">Dimensiones Extra</h4>
+                    <p class="text-gray-300">
+                        Una de las consecuencias más sorprendentes de la teoría de cuerdas es que requiere dimensiones adicionales 
+                        más allá de las tres espaciales y una temporal que experimentamos. La mayoría de versiones de la 
+                        teoría postulan 10, 11 o incluso 26 dimensiones en total.
+                    </p>
+                </div>
+                {% endif %}
+                
+                {% if contenido.titulo == "Multiverso y Universos Paralelos" %}
+                <div class="mt-6 p-4 bg-green-900 bg-opacity-30 rounded-lg border border-green-800">
+                    <h4 class="text-lg font-bold text-green-300 mb-2">Tipos de Multiversos</h4>
+                    <p class="text-gray-300 mb-2">Los científicos han propuesto diversos tipos de multiversos:</p>
+                    <ul class="list-disc list-inside text-gray-300 space-y-1">
+                        <li>Nivel I: Regiones del espacio más allá de nuestro horizonte observable</li>
+                        <li>Nivel II: Universos burbuja con diferentes constantes físicas</li>
+                        <li>Nivel III: Mundos de muchos mundos de la mecánica cuántica</li>
+                        <li>Nivel IV: Estructuras matemáticas diferentes donde existen universos completamente distintos</li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            
+            <!-- Comparison table -->
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-300 mb-6">Comparación de Teorías</h2>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-gray-900 bg-opacity-50 border border-purple-800 rounded-lg">
+                        <thead>
+                            <tr class="border-b border-purple-800">
+                                <th class="px-4 py-3 text-left text-purple-300 font-bold">Teoría</th>
+                                <th class="px-4 py-3 text-left text-purple-300 font-bold">Propuesta Por</th>
+                                <th class="px-4 py-3 text-left text-purple-300 font-bold">Década</th>
+                                <th class="px-4 py-3 text-left text-purple-300 font-bold">Ideas Principales</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b border-purple-900">
+                                <td class="px-4 py-3 text-white">Big Bang</td>
+                                <td class="px-4 py-3 text-gray-300">Georges Lemaître</td>
+                                <td class="px-4 py-3 text-gray-300">1920s</td>
+                                <td class="px-4 py-3 text-gray-300">El universo comenzó como un punto singular y se ha expandido desde entonces</td>
+                            </tr>
+                            <tr class="border-b border-purple-900">
+                                <td class="px-4 py-3 text-white">Teoría de Cuerdas</td>
+                                <td class="px-4 py-3 text-gray-300">Varios físicos</td>
+                                <td class="px-4 py-3 text-gray-300">1960s</td>
+                                <td class="px-4 py-3 text-gray-300">Las partículas fundamentales son cuerdas vibrantes en múltiples dimensiones</td>
+                            </tr>
+                            <tr class="border-b border-purple-900">
+                                <td class="px-4 py-3 text-white">Multiverso</td>
+                                <td class="px-4 py-3 text-gray-300">Hugh Everett</td>
+                                <td class="px-4 py-3 text-gray-300">1950s</td>
+                                <td class="px-4 py-3 text-gray-300">Existen múltiples universos paralelos con diferentes propiedades</td>
+                            </tr>
+                            <tr class="border-b border-purple-900">
+                                <td class="px-4 py-3 text-white">Inflación Cósmica</td>
+                                <td class="px-4 py-3 text-gray-300">Alan Guth</td>
+                                <td class="px-4 py-3 text-gray-300">1980s</td>
+                                <td class="px-4 py-3 text-gray-300">El universo experimentó una expansión exponencial en sus primeros momentos</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-white">Universo Cíclico</td>
+                                <td class="px-4 py-3 text-gray-300">Paul Steinhardt, Neil Turok</td>
+                                <td class="px-4 py-3 text-gray-300">2000s</td>
+                                <td class="px-4 py-3 text-gray-300">El universo pasa por ciclos infinitos de Big Bang y Big Crunch</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right column: Videos and images -->
+        <div>
+            <!-- Videos section -->
+            <div class="content-card p-6 mb-8">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Videos Explicativos</h2>
+                
+                {% for video in videos %}
+                <div class="mb-6">
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-lg font-bold text-purple-200 mb-1">{{ video.titulo }}</h3>
+                    <p class="text-sm text-gray-300">{{ video.descripcion }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Images section -->
+            <div class="content-card p-6">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Imágenes Conceptuales</h2>
+                
+                <div class="space-y-6">
+                    {% for imagen in imagenes %}
+                    <div class="gallery-item">
+                        <img src="{{ imagen.url }}" alt="{{ imagen.titulo }}" class="w-full h-56 object-cover rounded-lg">
+                        <div class="mt-2">
+                            <h3 class="text-lg font-bold text-purple-200 gallery-title">{{ imagen.titulo }}</h3>
+                            <p class="text-sm text-gray-300 gallery-desc">{{ imagen.descripcion }}</p>
+                            <p class="text-xs text-gray-400 mt-1 gallery-source">Fuente: {{ imagen.fuente }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <!-- Scientists -->
+            <div class="content-card p-6 mt-8">
+                <h2 class="text-xl font-bold text-purple-300 mb-4">Científicos Notables</h2>
+                
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 bg-purple-800 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-bold text-purple-200">Edward Witten</h3>
+                            <p class="text-sm text-gray-300">Físico teórico que unificó las cinco teorías de cuerdas en la Teoría M.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 bg-purple-800 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-bold text-purple-200">Max Tegmark</h3>
+                            <p class="text-sm text-gray-300">Cosmólogo que propuso cuatro niveles de multiversos.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex-shrink-0 h-10 w-10 bg-purple-800 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-bold text-purple-200">Gabriele Veneziano</h3>
+                            <p class="text-sm text-gray-300">Físico italiano considerado uno de los padres de la teoría de cuerdas.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock %}

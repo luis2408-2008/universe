@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - El Origen del Universo{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <!-- Welcome section -->
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-white text-glow mb-4">Bienvenido, {{ current_user.username }}</h1>
+        <p class="text-xl text-purple-200 max-w-3xl mx-auto">
+            Comienza tu viaje cósmico explorando el fascinante origen y estructura de nuestro universo.
+        </p>
+    </div>
+    
+    <!-- Featured categories -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <a href="{{ url_for('big_bang') }}" class="content-card p-6 text-center card-hover-effect bg-opacity-60 bg-gray-900">
+            <i class="fas fa-atom text-5xl text-purple-400 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-purple-300">El Big Bang</h3>
+            <p class="text-gray-300">Explora el nacimiento del universo</p>
+        </a>
+        
+        <a href="{{ url_for('theories') }}" class="content-card p-6 text-center card-hover-effect bg-opacity-60 bg-gray-900">
+            <i class="fas fa-brain text-5xl text-purple-400 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-purple-300">Teorías Científicas</h3>
+            <p class="text-gray-300">Descubre las teorías que explican el cosmos</p>
+        </a>
+        
+        <a href="{{ url_for('philosophy') }}" class="content-card p-6 text-center card-hover-effect bg-opacity-60 bg-gray-900">
+            <i class="fas fa-book-open text-5xl text-purple-400 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-purple-300">Filosofía Cósmica</h3>
+            <p class="text-gray-300">Visiones antiguas y modernas del universo</p>
+        </a>
+        
+        <a href="{{ url_for('space_time') }}" class="content-card p-6 text-center card-hover-effect bg-opacity-60 bg-gray-900">
+            <i class="fas fa-clock text-5xl text-purple-400 mb-4"></i>
+            <h3 class="text-xl font-bold mb-2 text-purple-300">Espacio-Tiempo</h3>
+            <p class="text-gray-300">Relatividad, agujeros negros y más</p>
+        </a>
+    </div>
+    
+    <!-- Featured content -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold text-purple-300 mb-6 section-header">Contenido Destacado</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {% for contenido in contenidos %}
+            <div class="content-card p-6 card-hover-effect">
+                <h3 class="text-xl font-bold mb-3 text-purple-300">{{ contenido.titulo }}</h3>
+                <p class="text-gray-300 mb-4">{{ contenido.contenido|truncate(150) }}</p>
+                
+                <div class="mt-4">
+                    <a href="{{ url_for(contenido.categoria) }}" class="text-purple-400 hover:text-purple-300 inline-flex items-center">
+                        Leer más <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Featured videos -->
+    <div class="mb-12">
+        <h2 class="text-2xl font-bold text-purple-300 mb-6 section-header">Videos Recomendados</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% for video in videos %}
+            <div class="content-card p-6 overflow-hidden card-hover-effect">
+                <h3 class="text-xl font-bold mb-3 text-purple-300">{{ video.titulo }}</h3>
+                
+                <div class="video-container mb-4">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video.youtube_id }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+                <p class="text-gray-300">{{ video.descripcion }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Image Gallery preview -->
+    <div>
+        <h2 class="text-2xl font-bold text-purple-300 mb-6 section-header">Galería Cósmica</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {% for imagen in imagenes %}
+            <div class="gallery-item h-56 card-hover-effect">
+                <img src="{{ imagen.url }}" alt="{{ imagen.titulo }}" class="w-full h-full object-cover">
+                <div class="gallery-caption">
+                    <h4 class="font-bold gallery-title">{{ imagen.titulo }}</h4>
+                    <p class="text-sm text-gray-300 gallery-desc">{{ imagen.descripcion|truncate(80) }}</p>
+                    <p class="text-xs text-gray-400 mt-1 gallery-source">{{ imagen.fuente }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-6">
+            <a href="{{ url_for('gallery') }}" class="cosmic-button inline-flex items-center">
+                Ver Galería Completa <i class="fas fa-images ml-2"></i>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/gallery.js') }}"></script>
+{% endblock %}
