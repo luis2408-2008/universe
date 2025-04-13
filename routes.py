@@ -178,8 +178,9 @@ def internal_server_error(e):
 
 # Initialize database with content
 def initialize_db():
-    # Crear usuario administrador predeterminado si no existe ningún usuario
-    if Usuario.query.count() == 0:
+    # Verificar si existe el usuario administrador, pero no borrar otros usuarios
+    admin_exists = Usuario.query.filter_by(username="admin").first()
+    if not admin_exists:
         admin_user = Usuario(
             username="admin",
             email="admin@cosmicexplorer.com"
@@ -188,6 +189,15 @@ def initialize_db():
         db.session.add(admin_user)
         db.session.commit()
         print("Usuario administrador creado - Usuario: admin, Contraseña: admin12345")
+    else:
+        print("Usuario administrador ya existe - manteniendo datos")
+        
+    # Recuperar y mostrar usuarios existentes (no se borrarán)
+    existing_users = Usuario.query.all()
+    if existing_users:
+        print(f"Usuarios mantenidos en la base de datos: {len(existing_users)}")
+        for user in existing_users:
+            print(f"- {user.username} ({user.email})")
     
     # Only add content if tables are empty
     if ContenidoCosmico.query.count() == 0:

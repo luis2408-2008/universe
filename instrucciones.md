@@ -26,10 +26,34 @@ La aplicación crea automáticamente un usuario administrador la primera vez que
 - **Contraseña:** admin12345
 - **Email:** admin@cosmicexplorer.com
 
-Estos datos nunca se borrarán ya que se guardan en una base de datos SQLite persistente.
+## Panel de Administración
+El usuario administrador tiene acceso a un panel exclusivo desde el que podrá:
+- Ver estadísticas generales de la aplicación
+- Monitorear los usuarios recientes
+- Revisar los últimos accesos a la plataforma
+- Gestionar la lista completa de usuarios registrados
 
-## Notas importantes
-- La aplicación usa SQLite en lugar de PostgreSQL para mayor facilidad
-- Todos los datos se almacenan localmente en el archivo `instance/site.db`
-- La base de datos y las cuentas de usuario son persistentes y no se borran al reiniciar
-- La aplicación crea automáticamente contenido de ejemplo (artículos, videos e imágenes) si no existe ninguno
+Para acceder: haz clic en el botón verde "Panel Admin" en la barra de navegación (solo visible para el usuario admin).
+
+## Gestión de Usuarios
+La aplicación incluye un script para crear o actualizar usuarios manualmente:
+
+```bash
+# Para crear un nuevo usuario:
+python create_user.py <nombre_usuario> <email> <contraseña>
+
+# Ejemplo:
+python create_user.py usuario1 usuario1@ejemplo.com contraseña123
+```
+
+## Persistencia de Datos
+- La aplicación usa SQLite con persistencia total de datos
+- Todos los datos se almacenan en `instance/cosmic_explorer.db`
+- Los usuarios y contenidos **nunca se borran** entre reinicios o actualizaciones
+- Si necesitas hacer una copia de seguridad, simplemente guarda el archivo de la base de datos
+- Para restaurar, solo coloca el archivo de base de datos guardado en la carpeta `instance`
+
+## Notas técnicas
+- La aplicación está optimizada para funcionar sin necesidad de configuración especial
+- Las sesiones de usuario persisten entre reinicios
+- Contenido generado automáticamente para demostración (artículos, videos e imágenes)
