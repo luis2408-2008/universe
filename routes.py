@@ -147,6 +147,17 @@ def internal_server_error(e):
 
 # Initialize database with content
 def initialize_db():
+    # Crear usuario administrador predeterminado si no existe ningún usuario
+    if Usuario.query.count() == 0:
+        admin_user = Usuario(
+            username="admin",
+            email="admin@cosmicexplorer.com"
+        )
+        admin_user.set_password("admin12345")
+        db.session.add(admin_user)
+        db.session.commit()
+        print("Usuario administrador creado - Usuario: admin, Contraseña: admin12345")
+    
     # Only add content if tables are empty
     if ContenidoCosmico.query.count() == 0:
         # Add some basic content about the origin of the universe

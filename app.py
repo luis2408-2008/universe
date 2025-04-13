@@ -15,8 +15,11 @@ db = SQLAlchemy(model_class=Base)
 app = Flask(__name__)
 app.secret_key = "clave_secreta_para_tu_aplicacion"
 
-# Configure the database to use SQLite (no PostgreSQL needed)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
+# Configure the database to use SQLite en una ubicación permanente
+db_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'instance', 'site.db')
+# Asegurarnos de que el directorio existe
+os.makedirs(os.path.dirname(db_path), exist_ok=True)
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{db_path}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Initialize the app with the extension
