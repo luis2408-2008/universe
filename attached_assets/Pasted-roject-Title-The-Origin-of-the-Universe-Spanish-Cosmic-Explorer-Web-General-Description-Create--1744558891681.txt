@@ -1,0 +1,81 @@
+roject Title: The Origin of the Universe – Spanish Cosmic Explorer Web
+
+General Description:
+Create a next-level, fully interactive, highly visual full-stack web application, 100% developed in Python, designed for deployment on Render.com. This app will deliver a rich and immersive experience centered on “El Origen del Universo”, with:
+
+	•	A visually stunning, animated login/registration system
+	•	Real authentication using a secure, persistent PostgreSQL database
+	•	A beautiful, interactive Spanish-language user interface
+	•	An information-packed web experience about the cosmos, scientific theories, and conspiracies
+	•	Real videos embedded from YouTube and real images loaded from the cloud
+	•	All components—frontend, backend, database—are fully functional and integrated
+
+⸻
+
+Technology Stack:
+
+Core Language:
+	•	Python for everything
+
+Backend (Python):
+	•	Framework: Flask or FastAPI
+	•	Routing and logic: All backend functionality handled by Python
+	•	Authentication system: Login and registration with full validation and session/token handling
+	•	Database connection: PostgreSQL via SQLAlchemy, asyncpg, or psycopg2
+	•	APIs for content loading (if needed): Powered by Python
+
+Frontend:
+	•	Languages: HTML5, CSS3, JavaScript
+	•	Templating: Jinja2 (Flask) or using JS with API endpoints (FastAPI)
+	•	Styling: Tailwind CSS with advanced animations
+	•	Language: Entire interface and content in Spanish
+	•	UI Design: Responsive, elegant, fully animated
+
+Database:
+	•	PostgreSQL (Cloud-hosted and persistent)
+	•	Stores user data, content metadata, and more
+	•	Data remains even if server is restarted or updated
+
+Media Content:
+	•	YouTube Videos: Embedded real scientific/cosmic videos, fully playable inside the app
+	•	Cloud Images: Space and universe imagery from real sources like NASA, Unsplash, etc.
+	•	Multimedia is NOT simulated or fake — everything is real and fully functional
+
+⸻
+
+Application Flow:
+	1.	Login Screen (in Spanish):
+	•	Beautiful, animated interface
+	•	Inputs: Usuario, Contraseña
+	•	Link to “¿No tienes cuenta? Regístrate”
+	•	Full backend validation and session creation
+	2.	Registration Page:
+	•	Inputs: Usuario, Contraseña, Confirmar contraseña
+	•	Validated via Python backend and securely stored in PostgreSQL
+	3.	Main Page – Cosmos & Universe Explorer (Post-login):
+	•	Language: 100% Spanish
+	•	Packed with information on:
+	•	The Big Bang
+	•	Scientific theories
+	•	Ancient and modern philosophical views
+	•	Space-time, black holes, multiverse, and cosmic conspiracies
+	•	Functional, animated buttons and sections: “Leer más”, “Ver video”, “Galería de imágenes”, etc.
+	•	Tons of real content: Text, images, videos, timelines, links, and knowledge
+	•	YouTube videos: Embedded and fully playable within the page
+	•	Images from the cloud: Displayed beautifully, loaded live from online sources
+	•	Entire UI designed to feel modern, deep, and immersive
+
+⸻
+
+Deployment:
+	•	Includes all required files for Render.com deployment:
+	•	requirements.txt for Python packages
+	•	render.yaml with build & start commands
+	•	Uses environment variables for DB secrets
+	•	Launch command (example): gunicorn app:app
+
+⸻
+
+Ultimate Goal:
+
+Build a spectacular, Spanish-language educational web app—completely made in Python—that feels alive and immersive. Packed with real multimedia, overflowing with scientific and philosophical information, and designed to run seamlessly in production on Render.com.
