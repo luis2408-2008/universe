@@ -19,7 +19,10 @@ app.secret_key = os.environ.get("SECRET_KEY", "clave_secreta_para_tu_aplicacion"
 # Configurar la base de datos (SQLite localmente, PostgreSQL en producción)
 if 'DATABASE_URL' in os.environ:
     # Configuración para Render (PostgreSQL)
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL").replace("postgres://", "postgresql://")
+    database_url = os.environ.get("DATABASE_URL")
+    if database_url and database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql://")
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_url
     print("Usando PostgreSQL (Producción)")
 else:
     # Configuración local (SQLite)
